@@ -16,7 +16,7 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
           <Button variant="ghost" size="icon" className="md:hidden mr-2">
             <Menu className="h-5 w-5" />
           </Button>
-          <h1 className="text-xl font-bold text-canteen-orange">Campus Canteen</h1>
+          <h1 className="text-xl font-bold text-school-red">School Canteen</h1>
         </div>
         
         <div className="hidden md:flex gap-6">
@@ -34,7 +34,7 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
         >
           <ShoppingCart className="h-5 w-5" />
           {cartItemCount > 0 && (
-            <span className="absolute -top-2 -right-2 bg-canteen-red text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+            <span className="absolute -top-2 -right-2 bg-school-red text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
               {cartItemCount}
             </span>
           )}

@@ -25,12 +25,12 @@ const FoodItem = ({ id, name, description, price, image, onAddToCart }: FoodItem
       <div className="p-4">
         <div className="flex justify-between items-start">
           <h3 className="font-bold text-lg">{name}</h3>
-          <span className="font-bold text-canteen-orange">₹{price.toFixed(2)}</span>
+          <span className="font-bold text-school-red">₹{price.toFixed(2)}</span>
         </div>
         <p className="text-sm text-muted-foreground mt-1 line-clamp-2">{description}</p>
         <Button 
           onClick={() => onAddToCart(id)} 
-          className="w-full mt-4 bg-canteen-orange hover:bg-canteen-red"
+          className="w-full mt-4 bg-school-green hover:bg-school-green/90"
         >
           <Plus className="mr-2 h-4 w-4" /> Add to Cart
         </Button>

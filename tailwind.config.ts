@@ -63,12 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				canteen: {
-					orange: '#FF7E1D',
-					'light-orange': '#FFA559',
-					red: '#FF4500',
-					'light-red': '#FF6347',
-					'bg-light': '#FFF8F0',
+				school: {
+					red: '#ea384c',
+					white: '#ffffff',
+					green: '#25a244',
+					'light-green': '#4cd675',
+					'dark-red': '#c41e32',
+					'bg-light': '#fff8f8',
 				}
 			},
 			borderRadius: {

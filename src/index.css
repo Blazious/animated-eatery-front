@@ -5,33 +5,33 @@
 
 @layer base {
   :root {
-    --background: 30 100% 98%;
-    --foreground: 20 50% 20%;
+    --background: 0 100% 99%;
+    --foreground: 0 50% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 20 50% 20%;
+    --card-foreground: 0 50% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 20 50% 20%;
+    --popover-foreground: 0 50% 20%;
 
-    --primary: 24 100% 56%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 356 84% 57%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 60 30% 96%;
-    --secondary-foreground: 24 40% 30%;
+    --secondary: 120 64% 39%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 60 20% 96%;
-    --muted-foreground: 25 40% 50%;
+    --muted: 0 10% 96%;
+    --muted-foreground: 0 40% 50%;
 
-    --accent: 12 100% 50%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 120 64% 57%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 20 10% 85%;
-    --input: 20 10% 85%;
-    --ring: 24 100% 56%;
+    --border: 0 10% 85%;
+    --input: 0 10% 85%;
+    --ring: 356 84% 57%;
 
     --radius: 0.75rem;
   }
@@ -59,11 +59,11 @@
   }
   
   .category-button.active {
-    @apply bg-canteen-orange text-white;
+    @apply bg-school-red text-white;
   }
   
   .category-button:not(.active) {
-    @apply bg-secondary text-foreground hover:bg-secondary/80;
+    @apply bg-secondary text-white hover:bg-secondary/80;
   }
 
   .cart-item {
@@ -95,7 +95,7 @@
 .shape1 {
   width: 400px;
   height: 400px;
-  background: linear-gradient(to right, #ff7e1d, #ffa559);
+  background: linear-gradient(to right, #ea384c, #ff6b7a);
   top: -100px;
   left: -100px;
   animation: float 20s infinite alternate;
@@ -104,7 +104,7 @@
 .shape2 {
   width: 300px;
   height: 300px;
-  background: linear-gradient(to right, #ff4500, #ff6347);
+  background: linear-gradient(to right, #25a244, #4cd675);
   bottom: -50px;
   right: -50px;
   animation: float-reverse 15s infinite alternate;
@@ -113,7 +113,7 @@
 .shape3 {
   width: 200px;
   height: 200px;
-  background: linear-gradient(to right, #ffa559, #ff7e1d);
+  background: linear-gradient(to right, #ea384c, #c41e32);
   top: 50%;
   left: 40%;
   animation: float 18s infinite alternate;

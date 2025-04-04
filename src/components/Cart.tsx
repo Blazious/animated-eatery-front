@@ -24,7 +24,7 @@ const Cart = ({ items, onIncrease, onDecrease, onCheckout }: CartProps) => {
 
   return (
     <div className="bg-white rounded-xl shadow-md p-4 sticky top-4">
-      <div className="flex items-center gap-2 mb-4 text-canteen-orange">
+      <div className="flex items-center gap-2 mb-4 text-school-red">
         <ShoppingCart className="h-5 w-5" />
         <h2 className="font-bold text-lg">Your Order</h2>
       </div>
@@ -61,7 +61,7 @@ const Cart = ({ items, onIncrease, onDecrease, onCheckout }: CartProps) => {
         
         <Button 
           onClick={onCheckout}
-          className="w-full mt-4 bg-canteen-orange hover:bg-canteen-red"
+          className="w-full mt-4 bg-school-red hover:bg-school-dark-red"
           disabled={items.length === 0}
         >
           Checkout
