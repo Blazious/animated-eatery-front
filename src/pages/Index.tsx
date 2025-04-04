@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import Header from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
@@ -6,7 +5,10 @@ import CategoryFilter from '@/components/CategoryFilter';
 import FoodItem from '@/components/FoodItem';
 import Cart, { CartItemType } from '@/components/Cart';
 import BackgroundAnimation from '@/components/BackgroundAnimation';
+import FeedbackDialog from '@/components/FeedbackDialog';
 import { useToast } from "@/hooks/use-toast";
+import { MessageSquare } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface FoodItem {
   id: string;
@@ -22,13 +24,21 @@ interface Category {
   name: string;
 }
 
+interface FeedbackData {
+  rating: number;
+  comment: string;
+  timestamp: string;
+}
+
 const Index = () => {
   const { toast } = useToast();
   const [activeCategory, setActiveCategory] = useState('all');
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
   const [showMobileCart, setShowMobileCart] = useState(false);
+  const [feedbackOpen, setFeedbackOpen] = useState(false);
+  const [feedbackPrompt, setFeedbackPrompt] = useState(false);
+  const [previousFeedbacks, setPreviousFeedbacks] = useState<FeedbackData[]>([]);
 
-  // Mock data for food items
   const foodItems: FoodItem[] = [
     {
       id: '1',
@@ -105,7 +115,6 @@ const Index = () => {
     { id: 'desserts', name: 'Desserts' }
   ];
 
-  // Filter food items based on active category
   const filteredFoodItems = activeCategory === 'all' 
     ? foodItems 
     : foodItems.filter(item => item.categoryId === activeCategory);
@@ -168,9 +177,50 @@ const Index = () => {
       duration: 3000,
     });
     setCartItems([]);
+    
+    setTimeout(() => {
+      setFeedbackPrompt(true);
+    }, 2000);
+  };
+
+  const handleFeedbackSubmit = (rating: number, comment: string) => {
+    const newFeedback: FeedbackData = {
+      rating,
+      comment,
+      timestamp: new Date().toISOString(),
+    };
+    
+    setPreviousFeedbacks(prev => [...prev, newFeedback]);
+    setFeedbackPrompt(false);
+    
+    console.log('Feedback submitted:', newFeedback);
   };
 
   const totalCartItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  useEffect(() => {
+    if (feedbackPrompt) {
+      const { dismiss } = toast({
+        title: "How was your experience?",
+        description: "We'd love to hear your feedback about our service.",
+        action: (
+          <Button 
+            variant="outline" 
+            size="sm" 
+            onClick={() => {
+              setFeedbackOpen(true);
+              dismiss();
+            }}
+            className="bg-school-green hover:bg-school-green/90 text-white"
+          >
+            <MessageSquare className="mr-2 h-4 w-4" />
+            Give Feedback
+          </Button>
+        ),
+        duration: 10000,
+      });
+    }
+  }, [feedbackPrompt, toast]);
 
   return (
     <div className="min-h-screen">
@@ -195,7 +245,7 @@ const Index = () => {
             />
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
-              {filteredFoodItems.map((item, index) => (
+              {filteredFoodItems.map((item) => (
                 <FoodItem
                   key={item.id}
                   id={item.id}
@@ -206,6 +256,16 @@ const Index = () => {
                   onAddToCart={handleAddToCart}
                 />
               ))}
+            </div>
+            
+            <div className="mt-8 flex justify-center">
+              <Button 
+                onClick={() => setFeedbackOpen(true)}
+                className="bg-school-red hover:bg-school-red/90 text-white"
+              >
+                <MessageSquare className="mr-2 h-5 w-5" />
+                Share Your Feedback
+              </Button>
             </div>
           </div>
           
@@ -227,6 +287,12 @@ const Index = () => {
           </div>
         </div>
       </main>
+
+      <FeedbackDialog 
+        open={feedbackOpen} 
+        onOpenChange={setFeedbackOpen} 
+        onSubmit={handleFeedbackSubmit} 
+      />
     </div>
   );
 };
