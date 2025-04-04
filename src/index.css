@@ -1,101 +1,120 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 30 100% 98%;
+    --foreground: 20 50% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 20 50% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 20 50% 20%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 24 100% 56%;
     --primary-foreground: 210 40% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 60 30% 96%;
+    --secondary-foreground: 24 40% 30%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 60 20% 96%;
+    --muted-foreground: 25 40% 50%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 12 100% 50%;
+    --accent-foreground: 210 40% 98%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 20 10% 85%;
+    --input: 20 10% 85%;
+    --ring: 24 100% 56%;
 
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --radius: 0.75rem;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans overflow-x-hidden;
   }
+}
+
+@layer components {
+  .food-card {
+    @apply bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden;
+  }
+  
+  .food-image {
+    @apply h-48 object-cover w-full transition-transform duration-500 hover:scale-105;
+  }
+  
+  .category-button {
+    @apply px-4 py-2 rounded-full transition-all duration-300 text-sm font-medium;
+  }
+  
+  .category-button.active {
+    @apply bg-canteen-orange text-white;
+  }
+  
+  .category-button:not(.active) {
+    @apply bg-secondary text-foreground hover:bg-secondary/80;
+  }
+
+  .cart-item {
+    @apply py-3 border-b border-border flex items-center justify-between;
+  }
+
+  .floating-bg {
+    @apply absolute opacity-20 rounded-full blur-3xl z-0;
+  }
+}
+
+.background-animation-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  opacity: 0.7;
+}
+
+.animated-shape {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.1;
+}
+
+.shape1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(to right, #ff7e1d, #ffa559);
+  top: -100px;
+  left: -100px;
+  animation: float 20s infinite alternate;
+}
+
+.shape2 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(to right, #ff4500, #ff6347);
+  bottom: -50px;
+  right: -50px;
+  animation: float-reverse 15s infinite alternate;
+}
+
+.shape3 {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(to right, #ffa559, #ff7e1d);
+  top: 50%;
+  left: 40%;
+  animation: float 18s infinite alternate;
 }
