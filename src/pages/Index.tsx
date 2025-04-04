@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Header from '@/components/Header';
+import Header, { Notification } from '@/components/Header';
 import HeroSection from '@/components/HeroSection';
 import CategoryFilter from '@/components/CategoryFilter';
 import FoodItem from '@/components/FoodItem';
@@ -38,6 +38,7 @@ const Index = () => {
   const [feedbackOpen, setFeedbackOpen] = useState(false);
   const [feedbackPrompt, setFeedbackPrompt] = useState(false);
   const [previousFeedbacks, setPreviousFeedbacks] = useState<FeedbackData[]>([]);
+  const [notifications, setNotifications] = useState<Notification[]>([]);
 
   const foodItems: FoodItem[] = [
     {
@@ -176,6 +177,14 @@ const Index = () => {
       description: "Your order has been placed successfully.",
       duration: 3000,
     });
+    
+    const orderId = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+    addNotification(`Your order #${orderId} has been received and is being prepared.`);
+    
+    setTimeout(() => {
+      addNotification(`Your order #${orderId} will be ready in approximately 15 minutes.`);
+    }, 5000);
+    
     setCartItems([]);
     
     setTimeout(() => {
@@ -196,7 +205,40 @@ const Index = () => {
     console.log('Feedback submitted:', newFeedback);
   };
 
+  const addNotification = (message: string) => {
+    const newNotification: Notification = {
+      id: Date.now().toString(),
+      message,
+      timestamp: new Date().toISOString(),
+      read: false
+    };
+    
+    setNotifications(prevNotifications => [newNotification, ...prevNotifications]);
+    
+    toast({
+      title: "New Notification",
+      description: message,
+      duration: 4000,
+    });
+  };
+
+  const handleNotificationRead = (id: string) => {
+    setNotifications(prevNotifications => 
+      prevNotifications.map(notification => 
+        notification.id === id 
+          ? { ...notification, read: true } 
+          : notification
+      )
+    );
+  };
+
   const totalCartItems = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
+  useEffect(() => {
+    setTimeout(() => {
+      addNotification("Welcome to JKUAT School Canteen! Today's special: Chicken Biryani.");
+    }, 2000);
+  }, []);
 
   useEffect(() => {
     if (feedbackPrompt) {
@@ -229,6 +271,8 @@ const Index = () => {
       <Header 
         cartItemCount={totalCartItems} 
         onCartClick={() => setShowMobileCart(!showMobileCart)} 
+        notifications={notifications}
+        onNotificationRead={handleNotificationRead}
       />
       
       <main className="container mx-auto px-4 md:px-0 pb-12">
