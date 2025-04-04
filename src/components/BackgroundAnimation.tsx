@@ -16,6 +16,17 @@ const BackgroundAnimation = () => {
         right: '20%',
         animation: 'float-reverse 22s infinite alternate'
       }}></div>
+      
+      {/* JKUAT specific shape */}
+      <div className="animated-shape" style={{
+        width: '180px',
+        height: '180px',
+        background: 'linear-gradient(to right, #ea384c, #25a244)',
+        opacity: '0.06',
+        bottom: '20%',
+        left: '15%',
+        animation: 'float 18s infinite alternate'
+      }}></div>
     </div>
   );
 };

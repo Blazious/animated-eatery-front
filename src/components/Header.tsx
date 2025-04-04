@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Menu, ShoppingCart } from "lucide-react";
+import { Menu, ShoppingCart, GraduationCap } from "lucide-react";
 
 interface HeaderProps {
   cartItemCount: number;
@@ -16,7 +16,10 @@ const Header = ({ cartItemCount, onCartClick }: HeaderProps) => {
           <Button variant="ghost" size="icon" className="md:hidden mr-2">
             <Menu className="h-5 w-5" />
           </Button>
-          <h1 className="text-xl font-bold text-school-red">School Canteen</h1>
+          <div className="flex items-center gap-2">
+            <GraduationCap className="h-6 w-6 text-school-red" />
+            <h1 className="text-xl font-bold text-school-red">JKUAT School Canteen</h1>
+          </div>
         </div>
         
         <div className="hidden md:flex gap-6">
